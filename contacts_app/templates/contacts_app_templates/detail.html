@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+
+    {% if contact.manager == request.user %}
+        {{ contact.name }}
+    {% else %}
+        You don't have access to this page
+    {% endif %}
+{% endblock %}
+{% load static %}
+
+{% block body %}
+     {% if contact.manager == request.user %}
+        <div class="card mb-4 mr-3 col-md-4"> <!--change -->
+                    <img src="{% if contact.image %}{{ contact.image.url }}{% else %}
+                        {% static 'contacts_app_statics/images/default.png' %} {% endif %}"
+                         alt="" class="card-img-top"> <!--change -->
+                    <div class="card-header">
+                       <h4 class="my-0 font-weight-normal"> <a href="#">Name:{{ contact.name }}
+                       </a></h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <a href="mailto:{{ contact.email }}">Email:{{ contact.email }}</a>
+                        </p>
+                         <p>
+                            <a href="tel:{{ contact.phone }}">Phone:{{ contact.phone }}</a>
+                        </p>
+                         <p>
+                            <a href="#">Info:{{ contact.info }}</a>
+                        </p>
+
+                    </div>
+                </div>
+         <div class="container">
+         <h5>Date added: {{ contact.date_added }}</h5>
+             <a href="{% url 'update-contact' contact.id %}" class="btn btn-warning">Update</a>
+             <a href="{% url 'delete-contact' contact.id %}" class="btn btn-danger">Delete</a>
+         </div>
+    {% endif %}
+
+{% endblock %}

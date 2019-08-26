@@ -1,0 +1,34 @@
+{% load static %}
+{% if contacts %}
+        <div class="row"><!--change -->
+
+            {% for contact in contacts %}
+                <a href="{% url 'contact_detail' contact.id %}">
+                    <div class="card mb-4 mr-3 col-md-4"> <!--change -->
+                    <img src="{% if contact.image %}{{ contact.image.url }}{% else %}
+                        {% static 'contacts_app_statics/images/default.png' %} {% endif %}"
+                         alt="" class="card-img-top"> <!--change -->
+                    <div class="card-header">
+                       <h4 class="my-0 font-weight-normal"> <a href="#">Name:{{ contact.name }}
+                       </a></h4>
+                    </div>
+                    <div class="card-body">
+                        <p>
+                            <a href="mailto:{{ contact.email }}">Email:{{ contact.email }}</a>
+                        </p>
+                         <p>
+                            <a href="tel:{{ contact.phone }}">Phone:{{ contact.phone }}</a>
+                        </p>
+                         <p>
+                            <a href="#">Info:{{ contact.info }}</a>
+                        </p>
+
+                    </div>
+                </div>
+                </a>
+            {% endfor %}
+        </div>
+
+{% else %}
+    <h5>Sorry, no contacts found</h5>
+{% endif %}

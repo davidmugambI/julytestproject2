@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial=1.0,
+    shrink_to_fit=no"/>
+    <link rel="stylesheet" href="{% static 'contacts_app_statics/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'contacts_app_statics/custom.css' %}">
+    <title>{% block title %}
+        Title
+    {% endblock %}</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <a href="{% url 'index' %}" class="navbar-brand">ADDRESS BOOK</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#AddNav" aria-controls="AddNav" aria-expanded="true"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse show" id="AddNav">
+
+        <form class="form-inline flex-nowrap bg-light mx-0 mx-lg-auto rounded p-1"
+              action="{% url 'search' %}" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search Contacts"
+                   aria-label="Search" name="search_term">
+        </form>
+
+        <ul class="navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                    {#            <a href="{% url 'contacts_app:add_contact' %}" class="nav-link">Add contact</a>#}
+                    <a href="{% url 'add_contact' %}" class="nav-link text-white">Add contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'view_contact' %}" class="nav-link text-white">view contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="nav-link text-white">Logout</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a href="{% url 'login' %}" class="nav-link text-white">login</a>
+                </li>
+            {% endif %}
+
+
+        </ul>
+
+    </div>
+</nav>
+<div class="container"><!--change -->
+    {% block body %}
+
+    {% endblock %}
+
+
+
+</div><!--change -->
+<footer class="footer bg-primay text-center mt-5">
+      <div class="container">
+        <span >ADDRESS BOOK &copy; ZALEGO JULY-AUGUST CLASS, 2019</span>
+      </div>
+</footer>
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+</body>
+</html>

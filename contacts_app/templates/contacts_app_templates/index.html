@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+search results for {{ search_term }}
+{% endblock title %}
+{% load static %}
+
+{% block body %}
+{#    <div class="container">#}
+{#        <h3>Search Results for {{ search_term }}</h3>#}
+{#    </div>#}
+{#   {% include 'contacts_app_templates/card.html' %}#}
+    <div class="container d-flex align-items-center flex-column">
+
+      <!-- Masthead Avatar Image -->
+      <img class="masthead-avatar mb-5" src="{% static 'contacts_app_statics/images/logo.jpg' %}" alt="">
+
+      <!-- Masthead Heading -->
+        <h1 class="masthead-heading text-uppercase mb-0">WELCOME TO YOUR RELIABLE <i>ADDRESS BOOK</i></h1>
+            <p>We securely store your contacts <a href="{% url 'register' %}" class="btn btn-primary">Sign up Today</a></p>
+
+      <!-- Icon Divider -->
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+
+      <!-- Masthead Subheading -->
+      <p class="masthead-subheading font-weight-light mb-0"></p>
+
+    </div>
+
+{% endblock body %}
